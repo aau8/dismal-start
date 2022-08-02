@@ -1,0 +1,46 @@
+{# Макрос для добавления bootstrap-style элементов формы #}
+{% macro form_input(name, value='', title=name, type='text') %}
+<div class="form-group">
+	<label class="form-label" for="{{ name }}_id">{{ title }}</label>
+	<input class="form-control" id="{{ name }}_id" name="{{ name }}" type="{{ type }}" value="{{ value | escape }}">
+</div>
+{% endmacro %}
+
+{% macro form_textarea(name, value='', title=name) %}
+<div class="form-group">
+	<label class="form-label" for="{{ name }}_id">{{ title }}</label>
+	<textarea class="form-control" name="{{ name }}" id="{{ name }}_id" cols="20" rows="5"></textarea>
+</div>
+{% endmacro %}
+
+
+{# Макрос для создания формы обратной связи #}
+{% macro feedback_form(action="", method="POST") %}
+<form class="form" action="{{ action }}" method="{{ method }}">
+	{{ form_input("Name", '', "Имя") }}
+	{{ form_input("Email", '', "Email", 'email') }}
+	{{ form_textarea("Message", '', 'Сообщение') }}
+	<button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+{% endmacro %}
+
+{#  #}
+{% macro product(title, text, price, addFavorite, isNew) %}
+<div class="c-product {{ 'is-new' if isNew }} {{ 'has-add-favorite' if addFavorite }}">
+	<div class="c-product__wrap">
+		<div class="c-product__img"><img src="@img/products/1.jpg" alt=""></div>
+		<span class="c-product__title">{{ title }}</span>
+		<span class="c-product__structure">70% шерсть, 30% акрил</span>
+		<span class="c-product__price">790 ₽</span>
+		<button class="btn is-fill has-icon-cart c-product__order">Заказать</button>
+		{% if addFavorite %}
+		<button class="icon icon_l c-product__favorite" data-add-favorite>
+			<svg fill="none" viewBox="0 0 32 32">
+				<path class="favorite-stroke" fill="#2C2D2E" d="m16 9-1.25-1.2C11.8 5 6.4 5.24 4.45 8.77c-.91 1.67-1.12 4.07.55 7.13 1.61 2.95 4.96 6.48 11 10.33 6.04-3.85 9.39-7.38 11-10.33 1.67-3.07 1.47-5.46.55-7.13C25.6 5.24 20.2 5 17.25 7.8L16 9Zm0 19.19c-26.83-16.47-8.5-30-.3-21.8l.3.28c.1-.1.68-.58.78-.67 7.96-6.8 26.05 5.72-.78 22.19Z"/>
+				<path class="favorite-fill" fill="#FDAC19" fill-rule="evenodd" d="M16 28.19c-26.83-16.47-8.5-30-.3-21.8l.3.28c.1-.1.68-.58.78-.67 7.96-6.8 26.05 5.72-.78 22.19Z" clip-rule="evenodd"/>
+			</svg>
+		</button>
+		{% endif %}
+	</div>
+</div>
+{% endmacro %}

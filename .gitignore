@@ -1,0 +1,7 @@
+.vscode/
+node_modules/
+prod/
+psd/
+package-lock.json
+convert-images/
+desktop.txt

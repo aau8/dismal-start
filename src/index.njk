@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Document</title>
+    </head>
+    <body>
+		Hello, world!!!
+		{% for item in sequence %}
+
+		{% endfor %}
+        {# {% from "parts/card.njk" import cardProduct %} #}
+        {% import "parts/card.njk" as card %}
+        <div class="card__list">
+            {{ card.product( addFavorite = true ) }}
+            {{ card.product() }}
+			{{ card.product( addFavorite = false ) }}
+			{{ card.product( addFavorite = true ) }}
+        </div>
+        <script type="text/javascript">
+		const a = 1;
+		console.log(a)
+
+        </script>
+    </body>
+</html>

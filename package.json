@@ -1,0 +1,45 @@
+{
+	"name": "_start-webpack",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "npx mix watch --mix-config=./config/laravel.mix.cjs",
+		"prod": "npx mix -p --mix-config=./config/laravel.mix.cjs",
+		"sprite": "npx mix --mix-config=./config/sprite.mix.js",
+		"njk:format": "djlint --version",
+		"deploy": "npm run prod && gulp ftp",
+		"zip": "npm run prod && gulp zip"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"browser-sync": "^2.27.10",
+		"browser-sync-webpack-plugin": "^2.3.0",
+		"clean-webpack-plugin": "^4.0.0",
+		"csso-webpack-plugin": "^2.0.0-beta.3",
+		"del": "^7.0.0",
+		"filename-regex": "^2.0.1",
+		"gulp": "^4.0.2",
+		"gulp-zip": "^5.1.0",
+		"html-webpack-plugin": "^5.5.0",
+		"laravel-mix": "^6.0.49",
+		"laravel-mix-nunjucks": "^1.2.2",
+		"laravel-mix-replace-in-file": "^0.1.0",
+		"mini-svg-data-uri": "^1.4.4",
+		"mix-html-builder": "^0.8.0",
+		"nunjucks-render-loader": "^0.0.2",
+		"posthtml-include": "^1.7.4",
+		"resolve-url-loader": "^5.0.0",
+		"sass": "^1.52.3",
+		"sass-loader": "^12.6.0",
+		"svg-spritemap-webpack-plugin": "^4.5.0",
+		"vinyl-ftp": "^0.6.1"
+	},
+	"dependencies": {
+		"djlint": "^1.9.3",
+		"swiper": "^8.2.4"
+	}
+}
