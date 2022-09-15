@@ -5,3 +5,4 @@ psd/
 package-lock.json
 convert-images/
 desktop.txt
+mix-manifest.json

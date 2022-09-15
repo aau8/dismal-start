@@ -1,0 +1,81 @@
+// Основной шаблон кнопки
+.btn {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 400;
+	color: var(--color, inherit);
+    border-radius: 50px;
+	padding: 0 12px;
+    white-space: nowrap;
+    user-select: none;
+    transition: $tr;
+
+	&.has-icon {
+
+		&::before {
+			content: '';
+			display: inline-block;
+			@include strictSize( var(--icon-size, 24px) );
+			mask: center/contain no-repeat var(--icon);
+			vertical-align: middle;
+			background: var(--icon-color, var(--color));
+			transition: $tr;
+		}
+	}
+
+	&:active {
+
+	}
+
+	@media (any-hover: hover) {
+
+		&:hover {
+			--color: #{$accent};
+		}
+
+		&:active {
+
+		}
+	}
+}
+
+@mixin link {
+	--color: #{$text-primary};
+
+	color: var(--color);
+	transition: $tr;
+
+	&:active {
+		--color: #{$accent};
+	}
+
+	@media (any-hover: hover) {
+
+		&:hover {
+			--color: #{$accent};
+		}
+
+		&:active {
+			--color: #{$accent};
+			opacity: .8;
+		}
+	}
+}
+
+.link {
+	@include link;
+
+    @media (any-hover: hover) {
+
+        &:hover {
+            color: $accent;
+        }
+    }
+
+    &:active {
+        color: brig-color($accent, active);
+    }
+}

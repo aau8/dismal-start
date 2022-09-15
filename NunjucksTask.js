@@ -95,8 +95,11 @@ class NunjucksTask {
 		// glob patterns can only contain forward-slashes, not backward-slashes
 		const patterns = [
 			path.join(this.from.path(), '**/*.njk').replace(/\\/g, '/'),
+			path.join(this.from.path(), '**/*.html').replace(/\\/g, '/'),
 			"!" + path.posix.join(this.base, `**/_**/**/*`).replace(/\\/g, '/'),
-			"!" + path.posix.join(this.base, `**/_*`).replace(/\\/g, '/'),
+			"!" + path.posix.join(this.base, `**/_**/**/*`).replace(/\\/g, '/'),
+			"!" + path.posix.join(this.base, `**/dismal_modules`).replace(/\\/g, '/'),
+			"!" + path.posix.join(this.base, `**/dismal_modules/**/*`).replace(/\\/g, '/'),
 		];
 
 		const files = globby.sync(patterns, { onlyFiles: true });
@@ -120,7 +123,10 @@ class NunjucksTask {
 
 		const options = { usePolling, ignored: /(^|[\/\\])\../ };
 		this.watcher = chokidar
-			.watch(path.join(this.data.from, '**/*.njk'), options)
+			.watch([
+				path.join(this.data.from, '**/*.(njk|html)'),
+				'!' + path.join(this.data.from, 'dismal_modules/**/*.html')
+			], options)
 			.on("all", (eventName, filePath) => {
 				this.onChange(filePath, eventName);
 			});
