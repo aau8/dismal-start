@@ -51,6 +51,38 @@ export function getRandomInt(min, max) {
 //========================================================================================================================================================
 
 
+// Анимация
+export function animate({ timing, draw, duration, end, start }) {
+	if (start) {
+		start()
+	}
+
+	let timeStart = performance.now();
+
+	requestAnimationFrame(function animate(time) {
+		// timeFraction изменяется от 0 до 1
+		let timeFraction = (time - timeStart) / duration;
+		if (timeFraction < 0) timeFraction = 0;
+		if (timeFraction > 1) timeFraction = 1;
+
+		// вычисление текущего состояния анимации
+		let progress = timing(timeFraction);
+
+		draw(progress); // отрисовать её
+
+		if (timeFraction < 1) {
+			requestAnimationFrame(animate);
+		}
+		else {
+			if (end) {
+				end()
+			}
+		}
+	});
+}
+//========================================================================================================================================================
+
+
 // Проверка поддержки webp, добавление класса webp или no-webp тегу body
 export function isWebp() {
 	// Проверка поддержки webp
